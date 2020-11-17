@@ -8,6 +8,7 @@ CREATE TABLE `crawl_site` (
   `regex` varchar(200) DEFAULT NULL,
   `match_url` varchar(250) DEFAULT NULL,
   `meta_flag` varchar(30) DEFAULT NULL,
+  `status` char(1) DEFAULT NULL,
   `create_time` datetime DEFAULT NULL,
   `update_time` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -23,6 +24,7 @@ CREATE TABLE `crawl_data` (
     `keyword` VARCHAR(100) DEFAULT NULL,
     `province` VARCHAR(20) DEFAULT NULL,
     `city` VARCHAR(20) DEFAULT NULL,
+    `status` char(1) DEFAULT NULL,
     `publish_time` VARCHAR(30) DEFAULT NULL,
     `create_time` DATETIME DEFAULT NULL,
     PRIMARY KEY (`id`)
