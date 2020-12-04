@@ -44,21 +44,21 @@ public class CrawlDataServiceImpl implements CrawlDataService {
 
     @Override
     public int deleteCrawlData(List<String> ids) {
-        CrawlDataExample pmsCrawlDataExample = new CrawlDataExample();
-        pmsCrawlDataExample.createCriteria().andIdIn(ids);
-        return brandMapper.deleteByExample(pmsCrawlDataExample);
+        CrawlDataExample crawlDataExample = new CrawlDataExample();
+        crawlDataExample.createCriteria().andIdIn(ids);
+        return brandMapper.deleteByExample(crawlDataExample);
     }
 
     @Override
     public List<CrawlData> listCrawlData(String keyword, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        CrawlDataExample pmsCrawlDataExample = new CrawlDataExample();
-        pmsCrawlDataExample.setOrderByClause("sort desc");
-        CrawlDataExample.Criteria criteria = pmsCrawlDataExample.createCriteria();
+        CrawlDataExample crawlDataExample = new CrawlDataExample();
+        crawlDataExample.setOrderByClause("create_time desc");
+        CrawlDataExample.Criteria criteria = crawlDataExample.createCriteria();
         if (!StringUtils.isEmpty(keyword)) {
             criteria.andSiteLike("%" + keyword + "%");
         }
-        return brandMapper.selectByExample(pmsCrawlDataExample);
+        return brandMapper.selectByExample(crawlDataExample);
     }
 
     @Override
@@ -70,9 +70,9 @@ public class CrawlDataServiceImpl implements CrawlDataService {
     public int updateShowStatus(List<String> ids, Integer showStatus) {
         CrawlData pmsCrawlData = new CrawlData();
        // pmsCrawlData.setShowStatus(showStatus);
-        CrawlDataExample pmsCrawlDataExample = new CrawlDataExample();
-        pmsCrawlDataExample.createCriteria().andIdIn(ids);
-        return brandMapper.updateByExampleSelective(pmsCrawlData, pmsCrawlDataExample);
+        CrawlDataExample crawlDataExample = new CrawlDataExample();
+        crawlDataExample.createCriteria().andIdIn(ids);
+        return brandMapper.updateByExampleSelective(pmsCrawlData, crawlDataExample);
     }
 
   
