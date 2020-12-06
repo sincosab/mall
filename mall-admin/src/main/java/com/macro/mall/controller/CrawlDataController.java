@@ -74,7 +74,7 @@ public class CrawlDataController {
     }
 
     @ApiOperation(value = "根据爬取数据名称分页获取爬取数据列表")
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET,produces="application/json;charset=UTF-8")
     @ResponseBody
     public CommonResult<CommonPage<CrawlData>> getList(@RequestParam(value = "keyword", required = false) String keyword,
                                                       @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
