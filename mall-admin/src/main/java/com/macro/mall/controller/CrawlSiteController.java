@@ -5,6 +5,8 @@ import com.macro.mall.common.api.CommonResult;
 
 import com.macro.mall.model.CrawlSite;
 import com.macro.mall.service.CrawlSiteService;
+
+import cn.hutool.core.lang.UUID;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,7 @@ public class CrawlSiteController {
     @ResponseBody
     public CommonResult create(@Validated @RequestBody CrawlSite crawlSite) {
         CommonResult commonResult;
+        crawlSite.setId("222");
         int count = crawlSiteService.createCrawlSite(crawlSite);
         if (count == 1) {
             commonResult = CommonResult.success(count);
