@@ -58,7 +58,7 @@ public class CrawlDataServiceImpl implements CrawlDataService {
         if (!StringUtils.isEmpty(keyword)) {
             criteria.andSiteLike("%" + keyword + "%");
         }
-        return brandMapper.selectByExample(crawlDataExample);
+        return brandMapper.selectByExampleWithBLOBs(crawlDataExample);
     }
 
     @Override
