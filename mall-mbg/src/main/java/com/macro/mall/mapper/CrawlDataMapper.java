@@ -10,7 +10,7 @@ public interface CrawlDataMapper {
 
     int deleteByExample(CrawlDataExample example);
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(CrawlData record);
 
@@ -20,7 +20,7 @@ public interface CrawlDataMapper {
 
     List<CrawlData> selectByExample(CrawlDataExample example);
 
-    CrawlData selectByPrimaryKey(String id);
+    CrawlData selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") CrawlData record, @Param("example") CrawlDataExample example);
 

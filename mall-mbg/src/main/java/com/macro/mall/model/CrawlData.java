@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class CrawlData implements Serializable {
-    private String id;
+    private Long id;
 
     private String title;
 
@@ -21,21 +21,23 @@ public class CrawlData implements Serializable {
 
     private String city;
 
-    private String status;
-
     private String publishTime;
 
+    private Integer status;
+
     private Date createTime;
+
+    private Date updateTime;
 
     private String content;
 
     private static final long serialVersionUID = 1L;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -95,14 +97,6 @@ public class CrawlData implements Serializable {
         this.city = city;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getPublishTime() {
         return publishTime;
     }
@@ -111,12 +105,28 @@ public class CrawlData implements Serializable {
         this.publishTime = publishTime;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     public Date getCreateTime() {
         return createTime;
     }
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
     public String getContent() {
@@ -141,9 +151,10 @@ public class CrawlData implements Serializable {
         sb.append(", keyword=").append(keyword);
         sb.append(", province=").append(province);
         sb.append(", city=").append(city);
-        sb.append(", status=").append(status);
         sb.append(", publishTime=").append(publishTime);
+        sb.append(", status=").append(status);
         sb.append(", createTime=").append(createTime);
+        sb.append(", updateTime=").append(updateTime);
         sb.append(", content=").append(content);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

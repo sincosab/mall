@@ -4,6 +4,7 @@ import com.macro.mall.common.api.CommonPage;
 import com.macro.mall.common.api.CommonResult;
 
 import com.macro.mall.model.CrawlSite;
+import com.macro.mall.model.UmsAdmin;
 import com.macro.mall.service.CrawlSiteService;
 
 import cn.hutool.core.lang.UUID;
@@ -39,7 +40,6 @@ public class CrawlSiteController {
     @ResponseBody
     public CommonResult create(@Validated @RequestBody CrawlSite crawlSite) {
         CommonResult commonResult;
-        crawlSite.setId("222");
         int count = crawlSiteService.createCrawlSite(crawlSite);
         if (count == 1) {
             commonResult = CommonResult.success(count);
@@ -52,7 +52,7 @@ public class CrawlSiteController {
     @ApiOperation(value = "更新站点")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable("id") String id,
+    public CommonResult update(@PathVariable("id") Long id,
                                @Validated @RequestBody CrawlSite crawlSite) {
         CommonResult commonResult;
         int count = crawlSiteService.updateCrawlSite(crawlSite);
@@ -67,7 +67,7 @@ public class CrawlSiteController {
     @ApiOperation(value = "删除站点")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult delete(@PathVariable("id") String id) {
+    public CommonResult delete(@PathVariable("id") Long id) {
         int count = crawlSiteService.deleteCrawlSite(id);
         if (count == 1) {
             return CommonResult.success(null);
@@ -89,14 +89,14 @@ public class CrawlSiteController {
     @ApiOperation(value = "根据编号查询站点信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CrawlSite> getItem(@PathVariable("id") String id) {
+    public CommonResult<CrawlSite> getItem(@PathVariable("id") Long id) {
         return CommonResult.success(crawlSiteService.getCrawlSite(id));
     }
 
     @ApiOperation(value = "批量删除站点")
     @RequestMapping(value = "/delete/batch", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult deleteBatch(@RequestParam("ids") List<String> ids) {
+    public CommonResult deleteBatch(@RequestParam("ids") List<Long> ids) {
         int count = crawlSiteService.deleteCrawlSite(ids);
         if (count > 0) {
             return CommonResult.success(count);
@@ -105,12 +105,12 @@ public class CrawlSiteController {
         }
     }
 
-    @ApiOperation(value = "批量更新显示状态")
-    @RequestMapping(value = "/update/showStatus", method = RequestMethod.POST)
+    @ApiOperation(value = "批量更新状态")
+    @RequestMapping(value = "/updateStatus", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateShowStatus(@RequestParam("ids") List<String> ids,
-                                   @RequestParam("showStatus") Integer showStatus) {
-        int count = crawlSiteService.updateShowStatus(ids, showStatus);
+    public CommonResult updateStatus(@RequestParam("ids") List<Long> ids,
+                                   @RequestParam("status") Integer status) {
+        int count = crawlSiteService.updateStatus(ids, status);
         if (count > 0) {
             return CommonResult.success(count);
         } else {
@@ -118,16 +118,4 @@ public class CrawlSiteController {
         }
     }
 
-   /* @ApiOperation(value = "批量更新厂家制造商状态")
-    @RequestMapping(value = "/update/factoryStatus", method = RequestMethod.POST)
-    @ResponseBody
-    public CommonResult updateFactoryStatus(@RequestParam("ids") List<String> ids,
-                                      @RequestParam("factoryStatus") Integer factoryStatus) {
-        int count = crawlSiteService.updateFactoryStatus(ids, factoryStatus);
-        if (count > 0) {
-            return CommonResult.success(count);
-        } else {
-            return CommonResult.failed();
-        }
-    }*/
 }

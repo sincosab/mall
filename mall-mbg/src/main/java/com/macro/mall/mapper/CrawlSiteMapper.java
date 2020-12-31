@@ -10,7 +10,7 @@ public interface CrawlSiteMapper {
 
     int deleteByExample(CrawlSiteExample example);
 
-    int deleteByPrimaryKey(String id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(CrawlSite record);
 
@@ -18,7 +18,7 @@ public interface CrawlSiteMapper {
 
     List<CrawlSite> selectByExample(CrawlSiteExample example);
 
-    CrawlSite selectByPrimaryKey(String id);
+    CrawlSite selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") CrawlSite record, @Param("example") CrawlSiteExample example);
 

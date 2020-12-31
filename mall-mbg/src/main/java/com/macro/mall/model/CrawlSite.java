@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class CrawlSite implements Serializable {
-    private String id;
+    private Long id;
 
     private String site;
 
@@ -23,7 +23,7 @@ public class CrawlSite implements Serializable {
 
     private String metaFlag;
 
-    private String status;
+    private Integer status;
 
     private Date createTime;
 
@@ -31,11 +31,11 @@ public class CrawlSite implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -103,11 +103,11 @@ public class CrawlSite implements Serializable {
         this.metaFlag = metaFlag;
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

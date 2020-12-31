@@ -49,7 +49,7 @@ public class CrawlDataController {
     @ApiOperation(value = "更新爬取数据")
     @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult update(@PathVariable("id") String id,
+    public CommonResult update(@PathVariable("id") Long id,
                                @Validated @RequestBody CrawlData crawlData) {
         CommonResult commonResult;
         int count = crawlDataService.updateCrawlData(crawlData);
@@ -64,7 +64,7 @@ public class CrawlDataController {
     @ApiOperation(value = "删除爬取数据")
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult delete(@PathVariable("id") String id) {
+    public CommonResult delete(@PathVariable("id") Long id) {
         int count = crawlDataService.deleteCrawlData(id);
         if (count == 1) {
             return CommonResult.success(null);
@@ -86,14 +86,14 @@ public class CrawlDataController {
     @ApiOperation(value = "根据编号查询爬取数据信息")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public CommonResult<CrawlData> getItem(@PathVariable("id") String id) {
+    public CommonResult<CrawlData> getItem(@PathVariable("id") Long id) {
         return CommonResult.success(crawlDataService.getCrawlData(id));
     }
 
     @ApiOperation(value = "批量删除爬取数据")
     @RequestMapping(value = "/delete/batch", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult deleteBatch(@RequestParam("ids") List<String> ids) {
+    public CommonResult deleteBatch(@RequestParam("ids") List<Long> ids) {
         int count = crawlDataService.deleteCrawlData(ids);
         if (count > 0) {
             return CommonResult.success(count);
@@ -105,7 +105,7 @@ public class CrawlDataController {
     @ApiOperation(value = "批量更新显示状态")
     @RequestMapping(value = "/update/showStatus", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateShowStatus(@RequestParam("ids") List<String> ids,
+    public CommonResult updateShowStatus(@RequestParam("ids") List<Long> ids,
                                    @RequestParam("showStatus") Integer showStatus) {
         int count = crawlDataService.updateShowStatus(ids, showStatus);
         if (count > 0) {
@@ -118,7 +118,7 @@ public class CrawlDataController {
    /* @ApiOperation(value = "批量更新厂家制造商状态")
     @RequestMapping(value = "/update/factoryStatus", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateFactoryStatus(@RequestParam("ids") List<String> ids,
+    public CommonResult updateFactoryStatus(@RequestParam("ids") List<Long> ids,
                                       @RequestParam("factoryStatus") Integer factoryStatus) {
         int count = crawlDataService.updateFactoryStatus(ids, factoryStatus);
         if (count > 0) {

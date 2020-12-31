@@ -30,12 +30,12 @@ public interface CrawlSiteService {
     /**
      * 删除站点
      */
-    int deleteCrawlSite(String id);
+    int deleteCrawlSite(Long id);
 
     /**
      * 批量删除站点
      */
-    int deleteCrawlSite(List<String> ids);
+    int deleteCrawlSite(List<Long> ids);
 
     /**
      * 分页查询站点
@@ -45,12 +45,14 @@ public interface CrawlSiteService {
     /**
      * 获取站点
      */
-    CrawlSite getCrawlSite(String id);
+    CrawlSite getCrawlSite(Long id);
 
     /**
      * 修改显示状态
      */
-    int updateShowStatus(List<String> ids, Integer showStatus);
+
+
+	int updateStatus(List<Long> ids, Integer status);
 
     
 }

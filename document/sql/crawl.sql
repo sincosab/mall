@@ -1,5 +1,5 @@
 CREATE TABLE `crawl_site` (
-  `id` varchar(32) NOT NULL,
+  `id` bigint NOT NULL AUTO_INCREMENT,
   `site` varchar(100) DEFAULT NULL,
   `init_url` varchar(200) DEFAULT NULL,
   `page_url` varchar(200) DEFAULT NULL,
@@ -8,14 +8,14 @@ CREATE TABLE `crawl_site` (
   `regex` varchar(200) DEFAULT NULL,
   `match_url` varchar(250) DEFAULT NULL,
   `meta_flag` varchar(30) DEFAULT NULL,
-  `status` char(1) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL,
-  `update_time` datetime DEFAULT NULL,
+  `status` int DEFAULT 1,
+  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `crawl_data` (
-    `id` VARCHAR(32) NOT NULL,
+   `id` bigint NOT NULL AUTO_INCREMENT,
     `title` VARCHAR(200) DEFAULT NULL,
     `content` TEXT,
     `site` VARCHAR(50) DEFAULT NULL,
@@ -24,8 +24,9 @@ CREATE TABLE `crawl_data` (
     `keyword` VARCHAR(100) DEFAULT NULL,
     `province` VARCHAR(20) DEFAULT NULL,
     `city` VARCHAR(20) DEFAULT NULL,
-    `status` char(1) DEFAULT NULL,
     `publish_time` VARCHAR(30) DEFAULT NULL,
-    `create_time` DATETIME DEFAULT NULL,
-    PRIMARY KEY (`id`)
+    `status` int DEFAULT 1,
+    `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
+    `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 )  ENGINE=INNODB DEFAULT CHARSET=UTF8;

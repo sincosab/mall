@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.macro.mall.mapper.CrawlSiteMapper">
   <resultMap id="BaseResultMap" type="com.macro.mall.model.CrawlSite">
-    <id column="id" jdbcType="VARCHAR" property="id" />
+    <id column="id" jdbcType="BIGINT" property="id" />
     <result column="site" jdbcType="VARCHAR" property="site" />
     <result column="init_url" jdbcType="VARCHAR" property="initUrl" />
     <result column="page_url" jdbcType="VARCHAR" property="pageUrl" />
@@ -11,7 +11,7 @@
     <result column="regex" jdbcType="VARCHAR" property="regex" />
     <result column="match_url" jdbcType="VARCHAR" property="matchUrl" />
     <result column="meta_flag" jdbcType="VARCHAR" property="metaFlag" />
-    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
@@ -91,15 +91,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from crawl_site
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from crawl_site
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.macro.mall.model.CrawlSiteExample">
     delete from crawl_site
@@ -108,7 +108,7 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.macro.mall.model.CrawlSite">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into crawl_site (site, init_url, page_url, 
@@ -117,11 +117,11 @@
       create_time, update_time)
     values (#{site,jdbcType=VARCHAR}, #{initUrl,jdbcType=VARCHAR}, #{pageUrl,jdbcType=VARCHAR}, 
       #{pageStart,jdbcType=INTEGER}, #{pageEnd,jdbcType=INTEGER}, #{regex,jdbcType=VARCHAR}, 
-      #{matchUrl,jdbcType=VARCHAR}, #{metaFlag,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, 
+      #{matchUrl,jdbcType=VARCHAR}, #{metaFlag,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.macro.mall.model.CrawlSite">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into crawl_site
@@ -186,7 +186,7 @@
         #{metaFlag,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        #{status,jdbcType=CHAR},
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
@@ -206,7 +206,7 @@
     update crawl_site
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=VARCHAR},
+        id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.site != null">
         site = #{record.site,jdbcType=VARCHAR},
@@ -233,7 +233,7 @@
         meta_flag = #{record.metaFlag,jdbcType=VARCHAR},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=CHAR},
+        status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
@@ -248,7 +248,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update crawl_site
-    set id = #{record.id,jdbcType=VARCHAR},
+    set id = #{record.id,jdbcType=BIGINT},
       site = #{record.site,jdbcType=VARCHAR},
       init_url = #{record.initUrl,jdbcType=VARCHAR},
       page_url = #{record.pageUrl,jdbcType=VARCHAR},
@@ -257,7 +257,7 @@
       regex = #{record.regex,jdbcType=VARCHAR},
       match_url = #{record.matchUrl,jdbcType=VARCHAR},
       meta_flag = #{record.metaFlag,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=CHAR},
+      status = #{record.status,jdbcType=INTEGER},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -292,7 +292,7 @@
         meta_flag = #{metaFlag,jdbcType=VARCHAR},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=CHAR},
+        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -301,7 +301,7 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.macro.mall.model.CrawlSite">
     update crawl_site
@@ -313,9 +313,9 @@
       regex = #{regex,jdbcType=VARCHAR},
       match_url = #{matchUrl,jdbcType=VARCHAR},
       meta_flag = #{metaFlag,jdbcType=VARCHAR},
-      status = #{status,jdbcType=CHAR},
+      status = #{status,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

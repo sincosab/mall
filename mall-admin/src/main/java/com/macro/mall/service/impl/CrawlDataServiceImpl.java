@@ -38,12 +38,12 @@ public class CrawlDataServiceImpl implements CrawlDataService {
     }
 
     @Override
-    public int deleteCrawlData(String id) {
+    public int deleteCrawlData(Long id) {
         return brandMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public int deleteCrawlData(List<String> ids) {
+    public int deleteCrawlData(List<Long> ids) {
         CrawlDataExample crawlDataExample = new CrawlDataExample();
         crawlDataExample.createCriteria().andIdIn(ids);
         return brandMapper.deleteByExample(crawlDataExample);
@@ -62,12 +62,12 @@ public class CrawlDataServiceImpl implements CrawlDataService {
     }
 
     @Override
-    public CrawlData getCrawlData(String id) {
+    public CrawlData getCrawlData(Long id) {
         return brandMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public int updateShowStatus(List<String> ids, Integer showStatus) {
+    public int updateShowStatus(List<Long> ids, Integer showStatus) {
         CrawlData pmsCrawlData = new CrawlData();
        // pmsCrawlData.setShowStatus(showStatus);
         CrawlDataExample crawlDataExample = new CrawlDataExample();

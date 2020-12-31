@@ -30,12 +30,12 @@ public interface CrawlDataService {
     /**
      * 删除爬取数据
      */
-    int deleteCrawlData(String id);
+    int deleteCrawlData(Long id);
 
     /**
      * 批量删除爬取数据
      */
-    int deleteCrawlData(List<String> ids);
+    int deleteCrawlData(List<Long> ids);
 
     /**
      * 分页查询爬取数据
@@ -45,12 +45,12 @@ public interface CrawlDataService {
     /**
      * 获取爬取数据
      */
-    CrawlData getCrawlData(String id);
+    CrawlData getCrawlData(Long id);
 
     /**
      * 修改显示状态
      */
-    int updateShowStatus(List<String> ids, Integer showStatus);
+    int updateShowStatus(List<Long> ids, Integer showStatus);
 
     
 }

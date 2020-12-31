@@ -39,12 +39,12 @@ public class CrawlSiteServiceImpl implements CrawlSiteService {
     }
 
     @Override
-    public int deleteCrawlSite(String id) {
+    public int deleteCrawlSite(Long id) {
         return crawlSiteMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    public int deleteCrawlSite(List<String> ids) {
+    public int deleteCrawlSite(List<Long> ids) {
         CrawlSiteExample csCrawlSiteExample = new CrawlSiteExample();
         csCrawlSiteExample.createCriteria().andIdIn(ids);
         return crawlSiteMapper.deleteByExample(csCrawlSiteExample);
@@ -54,7 +54,7 @@ public class CrawlSiteServiceImpl implements CrawlSiteService {
     public List<CrawlSite> listCrawlSite(String keyword, int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
         CrawlSiteExample csCrawlSiteExample = new CrawlSiteExample();
-        csCrawlSiteExample.setOrderByClause("sort desc");
+        csCrawlSiteExample.setOrderByClause("update_time desc");
         CrawlSiteExample.Criteria criteria = csCrawlSiteExample.createCriteria();
         if (!StringUtils.isEmpty(keyword)) {
             criteria.andSiteLike("%" + keyword + "%");
@@ -63,16 +63,16 @@ public class CrawlSiteServiceImpl implements CrawlSiteService {
     }
 
     @Override
-    public CrawlSite getCrawlSite(String id) {
+    public CrawlSite getCrawlSite(Long id) {
         return crawlSiteMapper.selectByPrimaryKey(id);
     }
 
     @Override
-    public int updateShowStatus(List<String> ids, Integer showStatus) {
+    public int updateStatus(List<Long> ids, Integer status) {
         CrawlSite csCrawlSite = new CrawlSite();
-       // csCrawlSite.setShowStatus(showStatus);
+        csCrawlSite.setStatus(status);
         CrawlSiteExample csCrawlSiteExample = new CrawlSiteExample();
-       // csCrawlSiteExample.createCriteria().andIdIn(ids);
+        csCrawlSiteExample.createCriteria().andIdIn(ids);
         return crawlSiteMapper.updateByExampleSelective(csCrawlSite, csCrawlSiteExample);
     }
 
