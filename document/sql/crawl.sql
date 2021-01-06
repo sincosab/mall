@@ -12,6 +12,7 @@ CREATE TABLE `crawl_site` (
   `meta_flag` varchar(30) DEFAULT NULL,
   `keyword` VARCHAR(100) DEFAULT NULL,
   `publish_time` VARCHAR(30) DEFAULT NULL,
+  `domain` VARCHAR(50) DEFAULT NULL,
   `status` int DEFAULT 1,
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
