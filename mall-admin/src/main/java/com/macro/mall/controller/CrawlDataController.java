@@ -105,9 +105,9 @@ public class CrawlDataController {
     @ApiOperation(value = "批量更新显示状态")
     @RequestMapping(value = "/update/showStatus", method = RequestMethod.POST)
     @ResponseBody
-    public CommonResult updateShowStatus(@RequestParam("ids") List<Long> ids,
+    public CommonResult updateStatus(@RequestParam("ids") List<Long> ids,
                                    @RequestParam("showStatus") Integer showStatus) {
-        int count = crawlDataService.updateShowStatus(ids, showStatus);
+        int count = crawlDataService.updateStatus(ids, showStatus);
         if (count > 0) {
             return CommonResult.success(count);
         } else {

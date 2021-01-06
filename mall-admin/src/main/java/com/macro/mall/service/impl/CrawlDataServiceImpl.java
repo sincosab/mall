@@ -67,9 +67,9 @@ public class CrawlDataServiceImpl implements CrawlDataService {
     }
 
     @Override
-    public int updateShowStatus(List<Long> ids, Integer showStatus) {
+    public int updateStatus(List<Long> ids, Integer showStatus) {
         CrawlData pmsCrawlData = new CrawlData();
-       // pmsCrawlData.setShowStatus(showStatus);
+       // pmsCrawlData.setStatus(showStatus);
         CrawlDataExample crawlDataExample = new CrawlDataExample();
         crawlDataExample.createCriteria().andIdIn(ids);
         return brandMapper.updateByExampleSelective(pmsCrawlData, crawlDataExample);
