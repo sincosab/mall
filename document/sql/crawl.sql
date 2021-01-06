@@ -13,6 +13,8 @@ CREATE TABLE `crawl_site` (
   `keyword` VARCHAR(100) DEFAULT NULL,
   `publish_time` VARCHAR(30) DEFAULT NULL,
   `domain` VARCHAR(50) DEFAULT NULL,
+  `domain_name` VARCHAR(50) DEFAULT NULL,
+  `base_url` VARCHAR(100) DEFAULT NULL,
   `status` int DEFAULT 1,
   `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
   `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
